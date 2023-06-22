@@ -1,0 +1,12 @@
+.cart{
+    border: 1px solid #ccc;
+    width: 250px;
+    height: 250px;
+    padding: 12px;
+}
+
+main{
+    padding: 10px 10%;
+    display: flex;
+    justify-content: space-between;
+}
