@@ -5,8 +5,7 @@ const Layout =({children}) =>{
         <>
         <header><Navigation/></header>
         {children}
-        {/* <div>footer</div>
-        <div>explain</div> */}
+
         </>
     )
 }
