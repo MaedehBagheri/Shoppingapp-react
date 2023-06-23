@@ -7,7 +7,7 @@ const Navigation =() =>{
            <div>
             <ul className="nav-list">
                 <li className="nav-item login">
-                    <NavLink to="/Login">ورود و ثبت نام</NavLink>
+                    <NavLink to="/signup">ورود و ثبت نام</NavLink>
                 </li>
                 <li className="nav-item">
                     <NavLink to="/Products">محصولات</NavLink>

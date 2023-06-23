@@ -1,5 +1,6 @@
 import Layout from "../Layout/Layout";
 import { useCart,useCartActions } from "../Providers/CartProvider";
+import {NavLink} from "react-router-dom"
 import "./cartShopping.css"
 const Cart =() =>{
     const {cart,total} =useCart();
@@ -67,6 +68,9 @@ return(
   <div>
     <p>net price:</p>
     <p>{total}$</p>
+ <NavLink to="/checkout">
+ <button>go to checkout</button>
+ </NavLink>
   </div>
  </>
 
