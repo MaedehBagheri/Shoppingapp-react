@@ -68,7 +68,7 @@ return(
   <div>
     <p>net price:</p>
     <p>{total}$</p>
- <NavLink to="/checkout">
+ <NavLink to="/signup?redirect=checkout">
  <button>go to checkout</button>
  </NavLink>
   </div>

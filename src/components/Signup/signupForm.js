@@ -2,11 +2,12 @@ import Input from "../../common/input";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import "./signup.css";
+import { useAuth } from "../../Providers/AuthProvider";
 import { Link, withRouter }from "react-router-dom";
-import { useState} from "react";
-// import { signupUser } from "../../services/sinupService";
-// import { useAuthActions } from "../../Providers/AuthProvider";
-// import { useQuery } from "../../hooks/useQuery";
+import { useState,useEffect} from "react";
+import { signupUser } from "../../services/signupService";
+import { useAuthActions } from "../../Providers/AuthProvider";
+import { useQuery } from "../../hooks/useQuery";
 
 const initialValues = {
   name: "",
@@ -36,40 +37,40 @@ const validationSchema = Yup.object({
 });
 
 const SignupForm = ({ history }) => {
-//   const query = useQuery();
-//   const redirect = query.get("redirect") || "/";
-//   const setAuth = useAuthActions();
-// //   const auth = useAuth();
-//   const [error, setError] = useState(null);
-// //   useEffect(() => {
-// //     if (auth) history.push(redirect);
-// //   }, [redirect, auth]);
+  const query = useQuery();
+  const redirect = query.get("redirect") || "/";
+  const setAuth = useAuthActions();
+  const auth = useAuth();
+  const [error, setError] = useState(null);
+  useEffect(() => {
+    if (auth) history.push(redirect);
+  }, [redirect, auth]);
 
-  // const onSubmit = async (values) => {
-  //   const { name, email, phoneNumber, password } = values;
+  const onSubmit = async (values) => {
+    const { name, email, phoneNumber, password } = values;
 
-  //   const userData = {
-  //     name,
-  //     email,
-  //     phoneNumber,
-  //     password,
-  //   };
-  //   try {
-  //     const { data } = await signupUser(userData);
-  //     setAuth(data);
+    const userData = {
+      name,
+      email,
+      phoneNumber,
+      password,
+    };
+    try {
+      const { data } = await signupUser(userData);
+      setAuth(data);
       
-  //     setError(null);
-  //     history.push(redirect);
-  //   } catch (error) {
+      setError(null);
+      history.push(redirect);
+    } catch (error) {
      
-  //     if (error.response && error.response.data.message)
-  //       setError(error.response.data.message);
-  //   }
-  // };
+      if (error.response && error.response.data.message)
+        setError(error.response.data.message);
+    }
+  };
 
   const formik = useFormik({
     initialValues,
-    // onSubmit,
+    onSubmit,
     validationSchema,
     validateOnMount: true,
   });
@@ -105,10 +106,10 @@ const SignupForm = ({ history }) => {
         >
           Signup
         </button>
-        {/* {error && <p style={{ color: "red" }}>{error}</p>}
+        {error && <p style={{ color: "red" }}>{error}</p>}
         <Link to={`/login?redirect=${redirect}`}>
           <p style={{ marginTop: "15px" }}>Already login?</p>
-        </Link> */}
+        </Link>
       </form>
     </div>
   );
