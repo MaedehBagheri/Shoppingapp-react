@@ -1,1 +1,36 @@
-GET http://localhost:5000/api/user HTTP/1.1
+POST http://localhost:5000/api/user/login HTTP/1.1
+content-type: application/json
+
+{
+    "email": "wahedm@gmail9.com",
+    "password": "1234579444"
+}
+
+###
+
+POST http://localhost:5000/api/user/register HTTP/1.1
+content-type: application/json
+
+{
+    "email": "saeed@gmail8.com",
+    "password": "123457988",
+    "name":"wahed sda",
+    "phoneNumber":"09182471776"
+}
+
+
+###
+
+GET http://localhost:5000/api/product HTTP/1.1
+content-type: application/json
+
+###
+
+
+###
+GET http://localhost:5000/api/product/seed HTTP/1.1
+content-type: application/json
+
+
+
+###

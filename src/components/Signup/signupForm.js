@@ -1,14 +1,14 @@
+import React, { useEffect } from "react";
 import Input from "../../common/input";
-import { useFormik } from "formik";
 import * as Yup from "yup";
-import "./signup.css";
-import { useAuth } from "../../Providers/AuthProvider";
-import { Link, withRouter }from "react-router-dom";
-import { useState,useEffect} from "react";
-import { signupUser } from "../../services/signupService";
-import { useAuthActions } from "../../Providers/AuthProvider";
-import { useQuery } from "../../hooks/useQuery";
-
+// import "../Login/login.css";
+import { useFormik } from "formik";
+import { Link } from "react-router-dom";
+import { signupUser } from "./../../services/signupService";
+import { toast } from "react-toastify";
+import { withRouter } from "react-router-dom/cjs/react-router-dom.min";
+import { useAuthActions, useAuth } from "./../../Providers/AuthProvider";
+import { useQuery } from "./../../hooks/useQuery";
 const initialValues = {
   name: "",
   email: "",
@@ -19,33 +19,35 @@ const initialValues = {
 
 const validationSchema = Yup.object({
   name: Yup.string()
-    .required("Name is required")
-    .min(6, "Name length is not valid"),
+    .required("Name is Required")
+    .min(4, "Name length is too short"),
   email: Yup.string()
     .email("Invalid email format")
-    .required("Email is required"),
+    .required("Email is Required"),
   phoneNumber: Yup.string()
-    .required("Phone Number is required")
-    .matches(/^[0-9]{11}$/, "Invalid Phone Number")
-    .nullable(),
-  password: Yup.string().required("Password is required"),
-  
-
-  passwordConfirm: Yup.string()
-    .required("Pasword Confirmation is Required")
-    .oneOf([Yup.ref("password"), null], "Passwords must match"),
+    .required("Phone Number is Required")
+    .matches(/^[0-9]{11}$/, "Phone Number should be 11 digit"),
+  password: Yup.string().required("Password is Required"),
+  passwordConfirm: Yup.string().test(
+    "password-match",
+    "Password must match",
+    function (value) {
+      return this.parent.password === value;
+    }
+  ),
 });
 
-const SignupForm = ({ history }) => {
+function SignupForm({ history }) {
   const query = useQuery();
   const redirect = query.get("redirect") || "/";
   const setAuth = useAuthActions();
   const auth = useAuth();
-  const [error, setError] = useState(null);
-  useEffect(() => {
-    if (auth) history.push(redirect);
-  }, [redirect, auth]);
 
+  useEffect(() => {
+    if (auth) {
+      history.push(redirect);
+    }
+  }, [redirect, auth]);
   const onSubmit = async (values) => {
     const { name, email, phoneNumber, password } = values;
 
@@ -55,64 +57,60 @@ const SignupForm = ({ history }) => {
       phoneNumber,
       password,
     };
+    console.log(userData);
     try {
       const { data } = await signupUser(userData);
-      setAuth(data);
-      
-      setError(null);
+      toast.success("Thanks for signing up");
       history.push(redirect);
+      setAuth(data);
+      // localStorage.setItem("authState", JSON.stringify(data));
     } catch (error) {
-     
-      if (error.response && error.response.data.message)
-        setError(error.response.data.message);
+      console.log(error);
+      toast.error(error.response.data.message);
     }
   };
 
   const formik = useFormik({
-    initialValues,
+    initialValues: initialValues,
     onSubmit,
     validationSchema,
     validateOnMount: true,
   });
-
   return (
-    <div className="fromContainer">
-      <form onSubmit={formik.handleSubmit}>
-        <Input formik={formik} name="name" label="Name" />
-        <Input formik={formik} name="email" label="Email" type="email" />
+    <div className="container form-container font-face-light">
+      <form className="form" onSubmit={formik.handleSubmit}>
+        <Input label="Name" name="name" formik={formik} />
+        <Input label="Email" name="email" formik={formik} />
         <Input
-          formik={formik}
-          name="phoneNumber"
           label="Phone Number"
+          name="phoneNumber"
+          formik={formik}
           type="tel"
         />
         <Input
-          formik={formik}
-          name="password"
           label="Password"
+          name="password"
+          formik={formik}
           type="password"
         />
         <Input
-          formik={formik}
+          label="Password Confirmation"
           name="passwordConfirm"
-          label="Password confirmation"
+          formik={formik}
           type="password"
         />
-        <button
-          style={{ width: "100%" }}
-          type="submit"
-          disabled={!formik.isValid}
-          className="btn primary"
-        >
-          Signup
-        </button>
-        {error && <p style={{ color: "red" }}>{error}</p>}
+        <div className="buttons">
+          <button type="submit" disabled={!formik.isValid}>
+            submit
+          </button>
+          {/* <button onClick={() => setFormData(savedData)}>Load Data</button> */}
+        </div>
         <Link to={`/login?redirect=${redirect}`}>
-          <p style={{ marginTop: "15px" }}>Already login?</p>
+          <p>Already Login?</p>
         </Link>
       </form>
     </div>
   );
-};
+}
 
 export default withRouter(SignupForm);
