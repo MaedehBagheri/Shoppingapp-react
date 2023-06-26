@@ -12,6 +12,9 @@ code {
     monospace;
 }
 
+section{
+  width: 100%;
+}
 *,
 ::before,::after{
   list-style: none;

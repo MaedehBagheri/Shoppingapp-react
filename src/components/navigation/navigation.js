@@ -10,7 +10,7 @@ const Navigation =() =>{
             <ul className="nav-list">
                 <li className="nav-item login">
                     <NavLink to={userData ? "/profile" : "/Login"}>
-                        {userData ? "پروفایل": "ورودو ثبت نام"}
+                        {userData ? "پروفایل": "ثبت نام"}
                     </NavLink>
                 </li>
                 <li className="nav-item">

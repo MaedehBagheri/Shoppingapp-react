@@ -1,0 +1,24 @@
+.checkout{
+display: flex;
+justify-content: space-around;
+align-items: center;
+padding: 50px 10%;
+margin-bottom: 5rem;
+flex-wrap: wrap;
+}
+
+.user-detail,
+.shop-detail{
+    width: 250px;
+    height: 250px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.shopping-back{
+    margin-bottom: 5rem;
+}

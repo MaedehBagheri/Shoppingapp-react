@@ -1,6 +1,7 @@
 .footer{
     display: flex;
     flex-direction: column;
+    width: 100%;
 }
 
 .footer-img{
@@ -23,20 +24,33 @@
     padding: 50px 10%;
     color: #74787c;
     font-size: 13px;
+    width: 100%;
 }
 
-.login-btn{
+.login-btn-web{
     padding: 10px 30px;
     border-radius: 32px;
     color: white;
     border: none;
     background-color: #fe3e01;
 }
+.footer-img p{
+    text-align: center;
 
+}
 .footer-text{
     padding: 19px;
 }
 
 .footer-logo{
     padding-top: 20px;
+}
+
+@media screen and (max-width:768px){
+    .footer-img{
+        padding: 4rem;
+    }
+    .footer-img p{
+        font-size: 11px;
+    }
 }

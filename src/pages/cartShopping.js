@@ -17,9 +17,9 @@ const decrementHandler=(cartItem)=>{
     return(
         <>
        <Layout>
-        <main className="cart-page">
+        <main className="cart-part">
           {cart.length ? cart.map((item)=>{
-       return  <div key={item.id} className="cart">
+       return  <section key={item.id} className="cart">
 
   <div className="cart-center">
 
@@ -35,13 +35,17 @@ const decrementHandler=(cartItem)=>{
    </div>
   </div>
 
-            </div>
+            </section>
 
-          }) : <p>no item in cart !</p>}
-
-          <div className="cart-summery">
-            <CartSummery cart={cart}  total={total}/>
+          }) : <div className="num-item">
+            <p>no item in cart !</p>
           </div>
+          
+          }
+
+          <section className="cart-summery">
+            <CartSummery cart={cart}  total={total}/>
+          </section>
         </main>
        </Layout>
         
@@ -80,7 +84,7 @@ return(
   </div>
   <div>
   <NavLink to="/signup?redirect=checkout">
- <button>go to checkout</button>
+ <button className="btn" >go to checkout</button>
  </NavLink>
   </div>
  </>

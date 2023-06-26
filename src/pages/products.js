@@ -26,7 +26,7 @@ dispatch({type:"add-to-cart" ,payload:product})
         <>
         <Layout>
             <NavLink to="/cart">
-            <div className="cart-page">
+            <div className="cart-base">
             <button >سبد خرید <span>{cart.length}</span> </button>
             </div>
             </NavLink>
@@ -37,7 +37,7 @@ dispatch({type:"add-to-cart" ,payload:product})
                 return<div key={product.id} >
 
                   <div className="product">
-           <div>
+           <div className="img">
            <img src={product.image} alt={product.image}/>
           
            </div>

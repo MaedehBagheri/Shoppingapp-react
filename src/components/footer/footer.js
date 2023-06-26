@@ -10,7 +10,7 @@ const Footer =() =>{
         <div><p>ثبت نام در کارت ساز رایگان است.همین 
             الان ثبت نام کنیدوکارت ساز رو امتحان کنید. </p></div>
         <div>
-            <button className="login-btn">ثبت نام رایگان</button>
+            <button className="login-btn-web">ثبت نام رایگان</button>
         </div>
     </div>
 
