@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import Input from "../../common/input";
 import * as Yup from "yup";
+import "./signup.css"
 // import "../Login/login.css";
 import { useFormik } from "formik";
 import { Link } from "react-router-dom";
@@ -63,7 +64,7 @@ function SignupForm({ history }) {
       toast.success("Thanks for signing up");
       history.push(redirect);
       setAuth(data);
-      // localStorage.setItem("authState", JSON.stringify(data));
+    
     } catch (error) {
       console.log(error);
       toast.error(error.response.data.message);
@@ -77,7 +78,12 @@ function SignupForm({ history }) {
     validateOnMount: true,
   });
   return (
-    <div className="container form-container font-face-light">
+   <>
+    <div>
+        <h1 className="signup-title">Signup !</h1>
+    </div>
+    <div className=" form-container ">
+    
       <form className="form" onSubmit={formik.handleSubmit}>
         <Input label="Name" name="name" formik={formik} />
         <Input label="Email" name="email" formik={formik} />
@@ -99,17 +105,18 @@ function SignupForm({ history }) {
           formik={formik}
           type="password"
         />
-        <div className="buttons">
-          <button type="submit" disabled={!formik.isValid}>
+        <div >
+          <button className="submit" type="submit" disabled={!formik.isValid}>
             submit
           </button>
-          {/* <button onClick={() => setFormData(savedData)}>Load Data</button> */}
+
         </div>
         <Link to={`/login?redirect=${redirect}`}>
           <p>Already Login?</p>
         </Link>
       </form>
     </div>
+   </>
   );
 }
 

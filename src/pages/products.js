@@ -25,21 +25,29 @@ dispatch({type:"add-to-cart" ,payload:product})
 
         <>
         <Layout>
-            <section className="product-list">
             <NavLink to="/cart">
-            <button>cart <span>{cart.length}</span> </button>
-
+            <div className="cart-page">
+            <button >سبد خرید <span>{cart.length}</span> </button>
+            </div>
             </NavLink>
+            <section className="product-list">
+
                {products.map((product)=>{
                 
                 return<div key={product.id} >
+
                   <div className="product">
-            <div>{product.image}</div>
-            <div>{product.name}</div>
+           <div>
+           <img src={product.image} alt={product.image}/>
+          
+           </div>
+           <div className="product-detail">
+           <div>{product.name}</div>
             <div>{product.price}</div>
-            <button 
+           </div>
+            <button className="add-btn" 
             onClick={()=> addProductHandler(product)}
-            > {checkinCart(cart,product) ? "in cart"  : "add to Cart"}</button>
+            > {checkinCart(cart,product) ? "موجود در سبد خرید"  : "اضافه به سبد خرید"}</button>
         </div>
                   </div>
               

@@ -10,7 +10,7 @@ export const products = [
       price: 120,
       offPrice: 120,
       discount: 0,
-      image: "https://s6.uupload.ir/files/daniel-storek-jm-qked1gmi-unsplash_ja2.jpg",
+      image: "https://s6.uupload.ir/files/revolt-164_6wvehfi-unsplash_xaog.jpg",
     },
     {
       id: 2,
@@ -19,7 +19,7 @@ export const products = [
       price: 110,
       offPrice: 100,
       discount: 8,
-      image: "https://s6.uupload.ir/files/andres-jasso-pqbl_mxmaue-unsplash_gkir.jpg",
+      image: "https://s6.uupload.ir/files/maksim-larin-nopsc3nwtzy-unsplash_i0j6.jpg",
     },
     {
       id: 3,

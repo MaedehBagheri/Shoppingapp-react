@@ -17,20 +17,29 @@ const decrementHandler=(cartItem)=>{
     return(
         <>
        <Layout>
-        <main>
+        <main className="cart-page">
           {cart.length ? cart.map((item)=>{
        return  <div key={item.id} className="cart">
-                <div>cart detail</div>
-                <p>{item.name}</p>
-                <p>{item.offPrice * item.qua}</p>
-                <button onClick={()=> decrementHandler(item)}>remove</button>
-                <button> {item.qua} </button>
-                <button onClick={()=> incrementHandler(item)}>add</button>
+
+  <div className="cart-center">
+
+  <div><img src={item.image} alt={item.name}/></div>
+ <div className="cart-detail">
+ <p>{item.name}</p>
+  <p>{item.offPrice * item.qua}</p>
+ </div>
+   <div className="btns">
+   <button className="btn remove" onClick={()=> decrementHandler(item)}>remove</button>
+    <button className="btn qua"> {item.qua} </button>
+    <button className="btn add" onClick={()=> incrementHandler(item)}>add</button>
+   </div>
+  </div>
+
             </div>
 
           }) : <p>no item in cart !</p>}
 
-          <div className="cart">
+          <div className="cart-summery">
             <CartSummery cart={cart}  total={total}/>
           </div>
         </main>
@@ -46,7 +55,6 @@ export default Cart;
 // cartSummery
 
 const CartSummery =({cart,total})=>{
-//  const {total,cart}= useCart()
 
 const originalTotalPrice =cart.length ? cart.reduce((acc,curr)=>acc + curr.qua * curr.price,0):
 0;
@@ -57,18 +65,21 @@ return(
    <div>
     <h4>cart Summery</h4>
   </div>
-  <div>
+  <div className="summery-text">
     <p>cart total:</p>
     <p>{originalTotalPrice}$</p>
   </div>
-  <div>
+  <div className="summery-text">
   <p>cart discount:</p>
   <p>{originalTotalPrice - total}%</p>
   </div>
-  <div>
+  <div className="summery-text">
     <p>net price:</p>
     <p>{total}$</p>
- <NavLink to="/signup?redirect=checkout">
+
+  </div>
+  <div>
+  <NavLink to="/signup?redirect=checkout">
  <button>go to checkout</button>
  </NavLink>
   </div>

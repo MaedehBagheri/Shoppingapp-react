@@ -1,4 +1,5 @@
 import { useFormik } from "formik";
+import "./login.css"
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -56,7 +57,12 @@ function LoginForm({ history }) {
     validateOnMount: true,
   });
   return (
-    <div className="container form-container font-face-light">
+
+   <>
+  <div className="login-title">
+  <h1>login !</h1>
+  </div>
+   <div className=" form-Container ">
       <form className="form" onSubmit={formik.handleSubmit}>
         <Input label="Email" name="email" formik={formik} />
         <Input
@@ -65,17 +71,17 @@ function LoginForm({ history }) {
           formik={formik}
           type="password"
         />
-        <div className="buttons">
-          <button type="submit" disabled={!formik.isValid}>
+        <div>
+          <button type="submit" className="login-btn" disabled={!formik.isValid}>
             Log In
           </button>
-          {/* <button onClick={() => setFormData(savedData)}>Load Data</button> */}
         </div>
         <Link className="" to="/signup">
           <p>Create account?</p>
         </Link>
       </form>
     </div>
+   </>
   );
 }
 

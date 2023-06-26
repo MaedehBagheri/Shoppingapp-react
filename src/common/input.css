@@ -1,0 +1,13 @@
+input{
+    display: flex;
+    width: 20rem;
+    border: none;
+    border: 1px solid #ccc;
+    border-radius: 7px;
+    padding: 3px;
+   
+}
+.formControl{
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+}
